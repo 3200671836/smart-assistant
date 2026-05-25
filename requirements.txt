@@ -22,3 +22,4 @@ rank-bm25>=0.2.2
 # 其他工具
 tiktoken>=0.5.0
 redis>=5.0.0
+jieba>=0.42.1
