@@ -1,0 +1,27 @@
+{
+  "test_time": "2026-05-17",
+  "original_text_length": 1050,
+  "results": [
+    {
+      "splitter": "RecursiveCharacterTextSplitter (旧配置)",
+      "chunk_count": 2,
+      "avg_chunk_size": 558.0,
+      "min_chunk_size": 133,
+      "max_chunk_size": 983
+    },
+    {
+      "splitter": "RecursiveCharacterTextSplitter (新配置)",
+      "chunk_count": 3,
+      "avg_chunk_size": 365.3333333333333,
+      "min_chunk_size": 133,
+      "max_chunk_size": 485
+    },
+    {
+      "splitter": "SemanticSplitter",
+      "chunk_count": 3,
+      "avg_chunk_size": 328.3333333333333,
+      "min_chunk_size": 48,
+      "max_chunk_size": 495
+    }
+  ]
+}

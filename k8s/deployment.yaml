@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-assistant
+  namespace: smart-assistant
+  labels:
+    app: smart-assistant
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smart-assistant
+  template:
+    metadata:
+      labels:
+        app: smart-assistant
+    spec:
+      containers:
+      - name: smart-assistant
+        image: ghcr.io/yourusername/smart-assistant:main
+        ports:
+        - containerPort: 8000
+          name: http
+        envFrom:
+        - configMapRef:
+            name: smart-assistant-config
+        - secretRef:
+            name: smart-assistant-secret
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: uploads
+          mountPath: /app/uploads
+        - name: faiss-index
+          mountPath: /app/faiss_index
+      volumes:
+      - name: uploads
+        persistentVolumeClaim:
+          claimName: smart-assistant-uploads
+      - name: faiss-index
+        persistentVolumeClaim:
+          claimName: smart-assistant-faiss-index
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: smart-assistant-uploads
+  namespace: smart-assistant
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: smart-assistant-faiss-index
+  namespace: smart-assistant
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi

@@ -1,0 +1,14 @@
+{
+  "document_count": 50,
+  "total_chars": 120813,
+  "avg_latency_ms": 779.93,
+  "p95_latency_ms": 866.33,
+  "p99_latency_ms": 866.33,
+  "qps": 7.01,
+  "concurrency": 10,
+  "success_rate": "100.0%",
+  "top3_hit_rate": "60.0%",
+  "vector_store": "FAISS",
+  "embedding_model": "DashScope text-embedding-v4",
+  "test_time": "2026-05-17"
+}
