@@ -4,15 +4,16 @@ Redis 客户端模块
 """
 
 import json
+import os
 import redis
 from typing import Any, Optional
 from datetime import timedelta
 
-# Redis 配置
-REDIS_HOST = "192.168.211.132"
-REDIS_PORT = 6379
-REDIS_DB = 0
-REDIS_PASSWORD = None  # 无密码
+# Redis 配置（支持环境变量覆盖）
+REDIS_HOST = os.getenv("REDIS_HOST", "192.168.211.132")
+REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+REDIS_DB = int(os.getenv("REDIS_DB", "0"))
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")  # 无密码
 
 # 全局连接池
 _redis_pool = None
