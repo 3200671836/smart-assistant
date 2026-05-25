@@ -1,0 +1,26 @@
+# 核心依赖
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.6.0
+python-multipart>=0.0.9
+
+# 数据库
+sqlalchemy>=2.0.25
+alembic>=1.13.0
+redis>=5.0.0
+
+# 文档处理
+python-docx>=1.1.0
+pdfplumber>=0.10.0
+
+# AI 核心
+dashscope>=1.17.0
+tiktoken>=0.5.0
+
+# LangChain 核心
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+
+# FAISS 向量检索
+faiss-cpu>=1.8.0
